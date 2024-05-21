@@ -14,7 +14,7 @@ app.get("/restaurants", async (request, response) => {
 });
 
 app.get("/restaurants/:id", async (request, response) => {
-    const number = require.params.id;
+    const number = request.params.id;
     const restaurant = await Restaurant.findByPk(number);
     response.json(restaurant);
 }
@@ -34,7 +34,7 @@ app.put("/restaurants/:id", async (request, response) => {
 app.delete("/restaurants/:id", async (request, response) => {
     const deletedRest = await Restaurant.destroy({where: {id: request.params.id}
     });
-    response.json(updatedRest);
+    response.json(deletedRest);
 })
 
 module.exports = app;
